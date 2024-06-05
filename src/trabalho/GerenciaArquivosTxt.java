@@ -2,6 +2,8 @@ package trabalho;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files; 
 
 public class GerenciaArquivosTxt {
@@ -26,11 +28,18 @@ public class GerenciaArquivosTxt {
     }
 
     public void gravarArquivo(String value) throws Exception{
-        if(! verificarArquivo()){
-            // throw  new Exception("O arquivo não existe"); 
-        
+        // Obtém diretório do arquivo
+        Path dir = getArquivo().getParent();
+        // Valida se o diretório existe
+        if (!Files.exists(dir)) {
+            // Se não existir, cria os diretórios recursivamente
+            Files.createDirectories(dir);
         }
-        Files.write()
-       
+        Files.write(getArquivo(), value.getBytes()); 
+    }
+    
+    public String lerArquivo () throws Exception{
+        return Files.readString(getArquivo());
     }
 }
+
