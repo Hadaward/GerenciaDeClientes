@@ -1,10 +1,13 @@
 package trabalho;
 
+/**
+ * DUPLA: Eduardo Gimenez e Lucas Theodoro
+ */
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files; 
+import java.nio.file.Files;
 
 public class GerenciaArquivosTxt {
     private String urlPasta; 
@@ -21,25 +24,22 @@ public class GerenciaArquivosTxt {
     
     public boolean verificarArquivo() {
         return Files.exists(
-            Paths.get(
-                this.getArquivo().toString()
-            )
+            this.getArquivo()
         );
     }
 
-    public void gravarArquivo(String value) throws Exception{
-        // Obtém diretório do arquivo
+    public void gravarArquivo(String dados) throws Exception {
         Path dir = getArquivo().getParent();
-        // Valida se o diretório existe
+
         if (!Files.exists(dir)) {
-            // Se não existir, cria os diretórios recursivamente
             Files.createDirectories(dir);
         }
-        Files.write(getArquivo(), value.getBytes()); 
+
+        Files.write(getArquivo(), dados.getBytes()); 
     }
     
-    public String lerArquivo () throws Exception{
-        return Files.readString(getArquivo());
+    public String lerArquivo () throws Exception {
+        return new String(Files.readAllBytes(getArquivo()), StandardCharsets.UTF_8);
     }
 }
 

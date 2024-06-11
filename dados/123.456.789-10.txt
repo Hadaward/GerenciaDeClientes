@@ -1,0 +1,4 @@
+Nome: Eduardo
+CPF: 123.456.789-10
+Data de Nascimento: 01/02/2003
+E-mail: eduardo@gmail.com
